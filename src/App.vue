@@ -37,7 +37,8 @@
 </script>
 <style lang="less" scoped>
     .app-container{
-        padding-top: 46px; 
+        padding-top: 46px;
+        padding-bottom: 50px;  
         overflow-x: hidden;  
     }
     .header {
