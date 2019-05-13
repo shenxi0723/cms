@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>会员</h3>
+        <h3>商品评论</h3>
     </div>
 </template>
 <script>
@@ -9,7 +9,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-h3{
-    color: blueviolet;
-}
+
 </style>
