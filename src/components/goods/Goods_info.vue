@@ -27,8 +27,8 @@
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
                     <p class="price">
-                        市场价：<del>￥2399</del>&nbsp;&nbsp;&nbsp;&nbsp;
-                        销售价：<span class="now_price">￥2199</span>
+                        市场价：<del>￥{{goods_detail.market_price}}</del>&nbsp;&nbsp;&nbsp;&nbsp;
+                        销售价：<span class="now_price">￥{{goods_detail.sell_price}}</span>
                     </p>
                     <p>
                         购买数量：<numbox @func="getNumber" :max_num="goods_detail.sq"></numbox>
@@ -101,6 +101,14 @@ export default {
         },
         joinCart(){
             this.ball_flag = !this.ball_flag
+            //创建出一个要保存到stroe中cart数组的对象
+            var goodsinfo_store = {
+                id: this.id,
+                count: this.qty,
+                price: this.goods_detail.sell_price,
+                checked: true
+            }
+            this.$store.commit('addItem',goodsinfo_store)
         },
         beforeEnter(el){
             el.style.transform="translate(0,0)";

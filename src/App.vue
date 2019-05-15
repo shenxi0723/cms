@@ -1,7 +1,8 @@
 <template>
     <div class="app-container">
         <!-- Header 区域 -->
-        <van-nav-bar  title="固定在顶部"  fixed class='header'  left-text="返回" @click-left="onClickLeft" />
+        <van-nav-bar  title="固定在顶部"  fixed class='header' left-text="返回"  @click-left="onClickLeft" v-if="flag"/>
+        <van-nav-bar  title="固定在顶部"  fixed class='header'  @click-left="onClickLeft" v-else/>
 
         <!-- 中间 router-view 区域 -->
         <transition>
@@ -20,7 +21,7 @@
                 <span class="mui-tab-label">会员</span>
             </router-link>
             <router-link class="mui-tab-item" to="/cart">
-                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span></span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item" to="/search">
@@ -33,9 +34,26 @@
 </template>
 <script>
  export default {
+    data(){
+        return {
+            flag: false
+        }
+    },
+    created(){
+        this.flag = this.$route.path === '/home' ? false : true
+    },
     methods: {
         onClickLeft(){
             this.$router.go(-1);
+        }
+    },
+    watch:{
+        "$route.path": function(newVal){
+            if(newVal === '/home') {
+                this.flag=false
+            } else{
+                this.flag=true
+            }
         }
     }
 }  
